@@ -41,8 +41,8 @@ export type StepState = "done" | "current" | "pending";
 export interface TimelineEntry {
   level: number;
   status: string;
-  date?: string;
-  remark?: string;
+  date?: string | undefined;
+  remark?: string | undefined;
   internal?: boolean;
 }
 export interface Complaint {
@@ -56,7 +56,7 @@ export interface Complaint {
   attachments: string[];
   anonymous: boolean;
   timeline: TimelineEntry[];
-  rejectReason?: string;
+  rejectReason?: string | undefined;
   messages: { from: "me" | "staff"; text: string; time: string }[];
 }
 

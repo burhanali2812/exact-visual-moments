@@ -55,7 +55,7 @@ export function Tabs() {
 /* ---------- Complaint card ---------- */
 function ComplaintCard({ c }: { c: Complaint }) {
   const { openDetail } = useStore();
-  const lvl = CHAIN[c.level - 1];
+  const lvl = CHAIN[c.level - 1] ?? CHAIN[0]!;
   return (
     <Card onClick={() => openDetail(c.id)}>
       <div className="flex items-center justify-between gap-2">
@@ -377,7 +377,7 @@ export function SubmitFlow() {
             <h2 className="text-xl font-bold text-foreground">Review & Submit</h2>
             {[["Category", cat], ["Title", title], ["Description", desc], ["Attachments", files.length ? files.join(", ") : "No files attached"], ["Anonymous", anon ? "Yes — identity hidden" : "No"]].map(([k, v], i) => (
               <Card key={k}><div className="flex items-start justify-between gap-3"><div className="min-w-0"><p className="text-xs text-muted-foreground">{k}</p><p className="mt-1 break-words text-sm font-medium text-foreground">{v}</p></div>
-                <button onClick={() => setStep([0, 1, 1, 2, 3][i])} className="shrink-0 text-xs font-medium text-primary">Edit</button></div></Card>
+                <button onClick={() => setStep([0, 1, 1, 2, 3][i] ?? 0)} className="shrink-0 text-xs font-medium text-primary">Edit</button></div></Card>
             ))}
           </div>
         )}
@@ -420,7 +420,7 @@ export function Success() {
 /* ---------- Detail ---------- */
 export function Detail() {
   const { back, detailId, complaints, setComplaints, toast } = useStore();
-  const c = complaints.find((x) => x.id === detailId) ?? complaints[0];
+  const c = (complaints.find((x) => x.id === detailId) ?? complaints[0])!;
   const [msg, setMsg] = useState("");
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
@@ -438,7 +438,7 @@ export function Detail() {
         <Card>
           <div className="flex items-center justify-between gap-2"><span className="text-xs font-medium text-muted-foreground">{c.id}</span><StatusChip status={c.status} /></div>
           <h2 className="mt-2 text-xl font-bold text-foreground">{c.title}</h2>
-          <div className="mt-3 rounded-xl bg-muted p-3 text-sm"><span className="text-muted-foreground">With: </span><span className="font-medium text-foreground">Level {c.level} · {CHAIN[c.level - 1].title}</span></div>
+          <div className="mt-3 rounded-xl bg-muted p-3 text-sm"><span className="text-muted-foreground">With: </span><span className="font-medium text-foreground">Level {c.level} · {CHAIN[c.level - 1]?.title}</span></div>
           <div className="mt-3 grid grid-cols-2 gap-3 text-sm">
             <div><p className="text-xs text-muted-foreground">Category</p><p className="font-medium text-foreground">{c.category}</p></div>
             <div><p className="text-xs text-muted-foreground">Submitted as</p><p className="font-medium text-foreground">{c.anonymous ? "Anonymous" : "Named"}</p></div>

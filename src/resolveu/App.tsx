@@ -10,7 +10,7 @@ function Screens() {
     requestAccess: RequestAccess, profileGate: ProfileGate, tabs: Tabs, submit: SubmitFlow, success: Success,
     detail: Detail, editProfile: EditProfile, notifSettings: NotifSettings, privacy: Privacy,
   } as const;
-  const S = map[screen];
+  const S = map[screen ?? "welcome"];
   return (
     <div className="relative h-full w-full overflow-hidden bg-background">
       <S />
