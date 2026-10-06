@@ -104,8 +104,8 @@ function HomeTab() {
           </button>
         </Card>
         <div className="grid grid-cols-2 gap-3">
-          <Card onClick={() => goTab("complaints")}><p className="text-sm text-muted-foreground">Active</p><p className="mt-1 text-3xl font-bold text-primary">{Math.min(active, 99) && 3 + (active - 10 > 0 ? active - 10 : 0)}</p></Card>
-          <Card onClick={() => goTab("complaints")}><p className="text-sm text-muted-foreground">Resolved</p><p className="mt-1 text-3xl font-bold text-success">{resolved + 1}</p></Card>
+          <Card onClick={() => goTab("complaints")}><p className="text-sm text-muted-foreground">Active</p><p className="mt-1 text-3xl font-bold text-primary">{active}</p></Card>
+          <Card onClick={() => goTab("complaints")}><p className="text-sm text-muted-foreground">Resolved</p><p className="mt-1 text-3xl font-bold text-success">{resolved}</p></Card>
         </div>
         <div>
           <SectionTitle action={<button onClick={() => goTab("complaints")} className="text-sm font-medium text-primary">See all</button>}>Latest Complaints</SectionTitle>
