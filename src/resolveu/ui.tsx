@@ -5,7 +5,7 @@ import type { Status } from "./data";
 
 export function AppHeader({ title, subtitle, onBack, right }: { title: string; subtitle?: string; onBack?: () => void; right?: ReactNode }) {
   return (
-    <header className="sticky top-0 z-20 grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 border-b border-border bg-card px-4 py-3">
+    <header className="sticky top-0 z-20 grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 border-b border-border bg-card px-4 pb-3 pt-12">
       {onBack ? (
         <button aria-label="Back" onClick={onBack} className="-ml-2 grid h-10 w-10 place-items-center rounded-xl text-foreground hover:bg-muted">
           <ChevronLeft className="h-5 w-5" />
@@ -178,7 +178,7 @@ export function ConfirmationDialog({ open, title, text, confirmLabel, danger, on
 export function Toast({ message }: { message: string | null }) {
   if (!message) return null;
   return (
-    <div className="animate-toast absolute left-1/2 top-14 z-[60] -translate-x-1/2 whitespace-nowrap rounded-full bg-navy px-4 py-2.5 text-sm font-medium text-navy-foreground shadow-card">
+    <div className="animate-toast absolute left-1/2 top-24 z-[60] -translate-x-1/2 whitespace-nowrap rounded-full bg-navy px-4 py-2.5 text-sm font-medium text-navy-foreground shadow-card">
       {message}
     </div>
   );
