@@ -14,13 +14,202 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      complaint_messages: {
+        Row: {
+          complaint_id: string
+          created_at: string
+          id: string
+          sender: string
+          text: string
+          user_id: string
+        }
+        Insert: {
+          complaint_id: string
+          created_at?: string
+          id?: string
+          sender?: string
+          text: string
+          user_id?: string
+        }
+        Update: {
+          complaint_id?: string
+          created_at?: string
+          id?: string
+          sender?: string
+          text?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "complaint_messages_complaint_id_fkey"
+            columns: ["complaint_id"]
+            isOneToOne: false
+            referencedRelation: "complaints"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      complaints: {
+        Row: {
+          accepted: boolean
+          anonymous: boolean
+          attachments: string[]
+          category: string
+          created_at: string
+          description: string
+          due_at: string
+          feedback: string | null
+          id: string
+          level: number
+          rating: number | null
+          reject_reason: string | null
+          status: string
+          timeline: Json
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          accepted?: boolean
+          anonymous?: boolean
+          attachments?: string[]
+          category: string
+          created_at?: string
+          description: string
+          due_at?: string
+          feedback?: string | null
+          id?: string
+          level?: number
+          rating?: number | null
+          reject_reason?: string | null
+          status?: string
+          timeline?: Json
+          title: string
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          accepted?: boolean
+          anonymous?: boolean
+          attachments?: string[]
+          category?: string
+          created_at?: string
+          description?: string
+          due_at?: string
+          feedback?: string | null
+          id?: string
+          level?: number
+          rating?: number | null
+          reject_reason?: string | null
+          status?: string
+          timeline?: Json
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      notifications: {
+        Row: {
+          complaint_id: string
+          created_at: string
+          id: string
+          kind: string
+          text: string
+          unread: boolean
+          user_id: string
+        }
+        Insert: {
+          complaint_id: string
+          created_at?: string
+          id?: string
+          kind?: string
+          text: string
+          unread?: boolean
+          user_id: string
+        }
+        Update: {
+          complaint_id?: string
+          created_at?: string
+          id?: string
+          kind?: string
+          text?: string
+          unread?: boolean
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notifications_complaint_id_fkey"
+            columns: ["complaint_id"]
+            isOneToOne: false
+            referencedRelation: "complaints"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar: string
+          id: string
+          name: string
+          phone: string
+          preferences: Json
+          program: string
+          roll: string
+        }
+        Insert: {
+          avatar?: string
+          id: string
+          name?: string
+          phone?: string
+          preferences?: Json
+          program?: string
+          roll?: string
+        }
+        Update: {
+          avatar?: string
+          id?: string
+          name?: string
+          phone?: string
+          preferences?: Json
+          program?: string
+          roll?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role?: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      resolveu_action: {
+        Args: {
+          action: string
+          complaint: string
+          reason?: string
+          stars?: number
+        }
+        Returns: undefined
+      }
+      resolveu_escalate: { Args: never; Returns: number }
     }
     Enums: {
       [_ in never]: never
